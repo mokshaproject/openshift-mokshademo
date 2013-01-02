@@ -7,4 +7,9 @@
 cd $OPENSHIFT_REPO_DIR/diy/
 
 # Actually start it and redirect logs
-nohup $OPENSHIFT_REPO_DIR/data/venv/bin/paster serve development.ini > $OPENSHIFT_HOMEDIR/diy-0.1/logs/server.log 2>&1 &
+nohup $OPENSHIFT_REPO_DIR/data/venv/bin/paster serve \
+    --pid-file=$OPENSHIFT_HOMEDIR/diy-0.1/run/paster.pid \
+    --log-file=$OPENSHIFT_HOMEDIR/diy-0.1/logs/server.log \
+    development.ini \
+    start \
+    openshift_internal_ip=$OPENSHIFT_INTERNAL_IP
